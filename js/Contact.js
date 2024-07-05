@@ -1,5 +1,9 @@
-class Contact {
+export default class Contact {
     constructor(name, number) {
+        // gestion des entrées
+        if(!name  || !number || isNaN(number)) {
+            throw new Error("Invalid name or number");
+        }
         this.name = name;
         this.number = number;
     }
@@ -9,8 +13,3 @@ class Contact {
     }
 }
 
-const c1 = new Contact("Joe", 33239293);
-const c2 = new Contact("Marcel", 18747831);
-
-c1.print()
-c2.print()
