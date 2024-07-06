@@ -4,3 +4,4 @@ Ce projet est un gestionnaire de contacts en cours de développement écrit en J
 # Fonctionnalités Actuelles
 * **Ajout de Contacts:** Création de nouveaux contacts avec leur nom et numéro de téléphone.
 * **Affichage des contacts:** Affichage des détails de chaque contact.
+* **Recherche contact:** Rechercher un contact à partir de son nom ou de son numéro
