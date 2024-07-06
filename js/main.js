@@ -11,5 +11,29 @@ phonebook.AddContact("Marcel", 18747831);
 phonebook.AddContact("Marie", 379017364);
 
 // affichage de tous les contacts
-console.log("Tous les contacts");
+console.log("All contacts");
 phonebook.printAllContacts();
+
+console.log("**************************")
+
+// rechercher un contact par nom
+const foundContactByName = phonebook.findContactByName("Joe");
+if(foundContactByName) {
+    console.log("contact found by name");
+    foundContactByName.print()
+}
+else {
+    console.log("contact not found by name");
+}
+
+// rechercher un contact par numéro
+const foundContactByNumber = phonebook.findContactByNumber(379017364);
+if(foundContactByNumber) {
+    console.log("contact found by number");
+    foundContactByNumber.print()
+}
+else {
+    console.log("contact not found by number");
+}
+
+
