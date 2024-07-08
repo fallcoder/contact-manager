@@ -29,6 +29,22 @@ export default class Phonebook {
         return this.contacts.find(contact => contact.number === number)
     }
 
+    // méthode pour supprimer un contact de la liste par nom et/ou numéro
+    removeContact({name, number}) {
+        this.contacts = this.contacts.filter(contact => {
+            let match = true;
+
+            if(name) {
+                match = match && contact.name !== name;
+            }
+            if(number) {
+                match = match && contact.number !== number;
+            }
+
+            return match;
+        })
+    }
+
     // méthode pour afficher tous les contacts dans la console
     printAllContacts() {
         this.contacts.forEach(contact => contact.print())
