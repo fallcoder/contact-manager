@@ -45,6 +45,28 @@ export default class Phonebook {
         })
     }
 
+    // méthode pour modifier un contact existant
+    updateContact({oldName, oldNumber}, {newName, newNumber}) {
+        // trouver le contact a modifier
+        const contact = this.contacts.find(contact => 
+            (oldName && contact.name === oldName) ||
+            (oldNumber && contact.number === oldNumber)
+        );
+
+        if(contact) {
+            // mettre a jour les informations du contact
+            if(newName) {
+                contact.name = newName;
+            }
+            if(newNumber) {
+                contact.number = newNumber;
+            } 
+        }
+        else {
+            console.log("contact not found");
+        }
+    }
+
     // méthode pour afficher tous les contacts dans la console
     printAllContacts() {
         this.contacts.forEach(contact => contact.print())
