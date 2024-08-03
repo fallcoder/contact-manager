@@ -5,56 +5,69 @@ import Phonebook from "./Phonebook.js";
 // création d'une instance de Phonebook
 const phonebook = new Phonebook();
 
-// ajout des contacts
-phonebook.AddContact("Joe", 33239293);
-phonebook.AddContact("Marcel", 18747831);
-phonebook.AddContact("Marie", 379017364);
-phonebook.AddContact("Mama", 211331893);
+// séléctionner les éléments du DOM
+const addContactForm = document.getElementById('addContactForm');
+const nameInput = document.getElementById('name');
+const numberInput = document.getElementById('number');
+const contactList = document.getElementById('contactList');
+const searchInput = document.getElementById('searchInput'); 
+const searchButton = document.getElementById('searchButton');
 
-// affichage de tous les contacts
-console.log("All contacts");
-phonebook.printAllContacts();
-
-console.log("**************************")
-console.log("Remove contact")
-
-// supprime le contact nommé Marie
-phonebook.removeContact({name: "Marie"})
-phonebook.printAllContacts();
-console.log("**************************")
-
-
-console.log("Update contact")
-console.log("**************************")
-
-// modifier le contact nommé Mama
-phonebook.updateContact({oldName: "Mama"}, {newName: "Mamaya"})
-phonebook.printAllContacts();
-console.log("**************************")
-
-
-console.log("Search contact")
-console.log("**************************")
-
-// rechercher un contact par nom
-const foundContactByName = phonebook.findContactByName("Joe");
-if(foundContactByName) {
-    console.log("contact found by name");
-    foundContactByName.print()
-}
-else {
-    console.log("contact not found by name");
+// function pour afficher les contacts
+function displayContacts() {
+    contactList.innerHTML = '';
+    phonebook.contacts.forEach(contact => {
+        const li = document.createElement('li');
+        li.textContent = `${contact.name}: ${contact.number}`;
+        const deleteBtn = document.createElement('button');
+        deleteBtn.id = 'delete';
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.onclick = () => {
+            phonebook.removeContact({name: contact.name});
+            displayContacts();
+        };
+        li.appendChild(deleteBtn);
+        contactList.appendChild(li);
+        
+    })
 }
 
-// rechercher un contact par numéro
-const foundContactByNumber = phonebook.findContactByNumber(379017364);
-if(foundContactByNumber) {
-    console.log("contact found by number");
-    foundContactByNumber.print()
+// gérer l'ajout de contact
+addContactForm.onsubmit = (e) => {
+    e.preventDefault()
+    const name = nameInput.value;
+    const number = parseInt(numberInput.value)
+    phonebook.AddContact(name, number);
+    displayContacts();
+    nameInput.value = '';
+    numberInput.value = '';
+};
+
+// gérer la recherche de contacts
+searchButton.onclick = () => {
+    const searchValue = searchInput.value.trim();
+    let contact;
+
+    if(isNaN(searchValue)) {
+        // si l'entrée n'est pas un numéro, rechercher par nom
+        contact = phonebook.findContactByName(searchValue) 
+    }
+    else {
+        // si l'entrée est un numéro, rechercher par numéro
+        contact = phonebook.findContactByNumber(parseInt(searchValue))
+    }
+
+    if(contact) {
+        alert(`Found: ${contact.name} - ${contact.number}`)
+    }
+    else {
+        alert('contact not found')
+    }
 }
-else {
-    console.log("contact not found by number");
-}
+
+displayContacts();
+
+
 
 
 
