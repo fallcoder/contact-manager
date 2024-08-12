@@ -58,8 +58,23 @@ li {
     border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
+
+.button-container {
+    display: flex;
+    gap: 5px;
+}
+
 
 #delete {
     background: #f32121;
 }
+
+#edit {
+    background: #408ce2;
+}
+
+
+
+
