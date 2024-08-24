@@ -13,3 +13,7 @@ Ce projet est un gestionnaire de contacts en cours de développement écrit en J
 * **js/phonebook.js:** classe Phonebook gérant les contacts avec les méthodes d'ajout, de suppression, de recherche et de modification
 * **js/contact.js:** classe Contact représentant un contact individuel
 * **js/main.js:** logique principale de l'application, incluant l'intégration de la classe Phonebook avec l'interface utilisateur
+
+## Auteur
+* Ce projet a été créé par Mouhamed Fall
+* Github : [@fallcoder](https://github.com/fallcoder)
